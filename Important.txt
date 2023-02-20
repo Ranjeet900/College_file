@@ -1,0 +1,149 @@
+haa
+bro 
+ha so to h
+bro mera internet speed accah h turant ho jayega
+
+Adarsh > ha toh download khatam hote he msg kar
+
+
+ok bro
+-----------------------------------------
+Important : ADBMS QUESTION
+--------------------------
+Dicision tree
+Association tree
+
+// Pentaho
+pehtaho -data greed
+
+Q.how to get excel file in pentaho
+Q.how to fetch file in pentaho
+Q. Number range
+
+Q.rank wise profit and year wise
+Q.Find out the minium profit region in every year
+Q.display department number and year and region and sum of the depatment of the region of the cude function
+(rollup,cube (in department data))
+
+Adt (rollno,name)
+Q.Display the employee who has id =3?
+Q.Display the list of the project.
+
+//Range
+Create three partinon in column in range partion 
+
+Dispaly the all the salary above the number
+
+
+
+Data greed 
+
+create a data grid ,transformation,split,add the sequence.
+
+// Analytical grouping
+
+Region and year must be complete first
+
+Q.Diaplay the region of the highest year profit
+ 
+//Range Partitioning All types and their command.
+
+list partioning
+
+Q.create adt types and details type
+and take table type:
+
+Display individual column(Practice yourself)
+
+// Pentaho number range : (VVI)
+//R programming intro
+// weather : month wise temp: 
+
+// Before enter the record read the query
+
+Iris data set: Head and trail
+// K-means clustering 
+
+// show the uses of lead and lag of following table.
+
+// Vector: Data (R programming)
+
+// show the uses of first and last function in oracle table.
+
+// Range partition : Hot topic
+
+// Rollup and cube fucntion(show the uses of rollup and cube)
+
+// calu,squence,adding a new row , split,concatination
+
+// Rank and dense rank
+
+// Open file and show 
+
+// Load grocery data set and 
+
+
+//Partition add column and remove column
+
+// Rollup and cube
+// List and last
+
+
+// Pentaho data validataion: 
+
+
+// Range and list partiition (important)
+
+// Adt on Book data types
+
+// Missing Value : 
+
+// Java JDBC And Aop
+
+
+Viva Questions :
+
+1. What do you mean by Partioning and types :
+2.How range and list works?
+3.What do you mean by abstract data types and use
+4.oodbms and ordbms
+5. Data warehouse and ETL process.
+6. olap and oltp difference.
+7. Parallel and distributed database and it's implement 
+8. Star snow and snowflake and fact contilasion
+9. Data mining and data integration and ETL Process
+10.Association rule mining (Support? , strong association rule? and confidence??)
+11.What do you mena by decision tree?
+12.clustering and classification b/w difference
+13.Web mining and types : 3 types
+14.Remember the version of the software.
+15.Can we fetch the excel sheet in r programming.
+16.Decison Tree?
+17.
+
+
+
+
+ggplot(iris, aes(Petal.Length, Petal.Width, color = iris$Species)) +geom_point(alpha = 0.4, size = 3.5) + geom_point(col = clusterCut) +scale_color_manual(values = c('black', 'red', 'green'))+
+
+
+
+
+CREATE TABLE Book (
+    book_id INT PRIMARY KEY,
+    title VARCHAR(255),
+    author VARCHAR(255),
+    publisher VARCHAR(255),
+    pub_date DATE); 
+
+
+INSERT INTO Books (title, author, publisher, pub_date)
+VALUES ('To Kill a Mockingbird', 'Harper Lee', 'J. B. Lippincott & Co.', '1960-07-11');
+
+
+create type type_name As object(
+fname varchar(20),
+mname varchar(20),
+lname varchar(20)
+ );
+/

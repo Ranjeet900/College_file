@@ -1,0 +1,101 @@
+SQL> create table student(
+  2  rollno integer,
+  3  percentage integer);
+
+Table created.
+
+SQL> insert into student values(101,59);
+
+1 row created.
+
+SQL> insert into student values(102,35);
+
+1 row created.
+
+SQL> insert into student values(103,69);
+
+1 row created.
+
+SQL> insert into student values(104,89);
+
+1 row created.
+
+SQL> insert into student values(105,36);
+
+1 row created.
+
+SQL> insert into student values(106,56);
+
+1 row created.
+
+SQL> insert into student values(107,23);
+
+1 row created.
+
+SQL> insert into student values(108,20);
+
+1 row created.
+
+SQL> select*from student;
+
+    ROLLNO PERCENTAGE
+---------- ----------
+       101         59
+       102         35
+       103         69
+       104         89
+       105         36
+       106         56
+       107         23
+       108         20
+
+8 rows selected.
+
+SQL> commit;
+
+Commit complete.
+
+SQL> select*from studentoutput;
+
+    ROLLNO PERCENTAGE
+---------- ----------
+RANGE
+--------------------------------------------------------------------------------
+       101         59
+unknown
+
+       102         35
+Third
+
+       103         69
+First
+
+
+    ROLLNO PERCENTAGE
+---------- ----------
+RANGE
+--------------------------------------------------------------------------------
+       104         89
+First
+
+       105         36
+Third
+
+       106         56
+Second
+
+
+    ROLLNO PERCENTAGE
+---------- ----------
+RANGE
+--------------------------------------------------------------------------------
+       107         23
+Fail
+
+       108         20
+Fail
+
+
+8 rows selected.
+
+SQL>

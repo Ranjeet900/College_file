@@ -1,0 +1,486 @@
+SQL> create table type_name As Object(
+  2  fname varchar(20),
+  3  mname varchar(20),
+  4  lname varchar(20)
+  5  );
+create table type_name As Object(
+                          *
+ERROR at line 1:
+ORA-00928: missing SELECT keyword
+
+
+SQL> create table type_name As object(
+  2  fname varchar(20),
+  3  mname varchar(20),
+  4  lname varchar(20)
+  5  );
+create table type_name As object(
+                          *
+ERROR at line 1:
+ORA-00928: missing SELECT keyword
+
+
+SQL> create type type_name As object(
+  2  fname varchar(20),
+  3  mname varchar(20),
+  4  lname varchar(20)
+  5   );
+  6  /
+
+Type created.
+
+SQL> create type type_address As object(
+  2  street varchar(20),
+  3  city varchar(20),
+  4  pincode number(10)
+  5  );
+  6  /
+
+Type created.
+
+SQL> create table customer1(
+  2  c_id type_number,
+  3  c_add type_address,
+  4  c_phone number(10)
+  5  );
+c_id type_number,
+     *
+ERROR at line 2:
+ORA-00902: invalid datatype
+
+
+SQL> create table customer1(
+  2  c_id number(5) type_number,
+  3  c_add type_address,
+  4  c_phone number(10)
+  5  );
+c_id number(5) type_number,
+               *
+ERROR at line 2:
+ORA-00907: missing right parenthesis
+
+
+SQL> create table customer1(
+  2  c_id number(5) primary key,
+  3  c_name type_name,
+  4  c_add type_address,
+  5  c_phno number(10)
+  6  );
+
+Table created.
+
+SQL> insert into customer1
+  2  values(1,type_name('ram','Kumar','Sigh'),
+  3  type_address('Mahim','mumbai',400016),12345678);
+
+1 row created.
+
+SQL> select*from customer1;
+
+      C_ID
+----------
+C_NAME(FNAME, MNAME, LNAME)
+--------------------------------------------------------------------------------
+C_ADD(STREET, CITY, PINCODE)
+--------------------------------------------------------------------------------
+    C_PHNO
+----------
+         1
+TYPE_NAME('ram', 'Kumar', 'Sigh')
+TYPE_ADDRESS('Mahim', 'mumbai', 400016)
+  12345678
+
+
+SQL> select c.c_name.fname|| ''|| c.c_name.mname||''||c.c_name.lname from customer1 c;
+
+C.C_NAME.FNAME||''||C.C_NAME.MNAME||''||C.C_NAME.LNAME
+------------------------------------------------------------
+ramKumarSigh
+
+SQL> create table student(
+  2  rollno integer,
+  3  percentage);
+percentage)
+*
+ERROR at line 3:
+ORA-02263: need to specify the datatype for this column
+
+
+SQL> create table student(
+  2  rollno integer,
+  3  percentage integer);
+
+Table created.
+
+SQL> insert into student values(101,59);
+
+1 row created.
+
+SQL> insert into student values(102,35);
+
+1 row created.
+
+SQL> insert into student values(103,69);
+
+1 row created.
+
+SQL> insert into student values(104,89);
+
+1 row created.
+
+SQL> insert into student values(105,36);
+
+1 row created.
+
+SQL> insert into student values(106,56);
+
+1 row created.
+
+SQL> insert into student values(107,23);
+
+1 row created.
+
+SQL> insert into student values(108,20);
+
+1 row created.
+
+SQL> select*from student;
+
+    ROLLNO PERCENTAGE
+---------- ----------
+       101         59
+       102         35
+       103         69
+       104         89
+       105         36
+       106         56
+       107         23
+       108         20
+
+8 rows selected.
+
+SQL> commit;
+
+Commit complete.
+
+SQL> select*from studentoutput;
+
+    ROLLNO PERCENTAGE
+---------- ----------
+RANGE
+--------------------------------------------------------------------------------
+       101         59
+unknown
+
+       102         35
+Third
+
+       103         69
+First
+
+
+    ROLLNO PERCENTAGE
+---------- ----------
+RANGE
+--------------------------------------------------------------------------------
+       104         89
+First
+
+       105         36
+Third
+
+       106         56
+Second
+
+
+    ROLLNO PERCENTAGE
+---------- ----------
+RANGE
+--------------------------------------------------------------------------------
+       107         23
+Fail
+
+       108         20
+Fail
+
+
+8 rows selected.
+
+SQL> create table sales(
+  2  continent varchar(20),
+  3  country varchar(20),
+  4  city varchar(20),
+  5  units_sold integer
+  6  );
+
+Table created.
+
+SQL> insert into values('North America','Canada','Toronto',10000);
+insert into values('North America','Canada','Toronto',10000)
+            *
+ERROR at line 1:
+ORA-00903: invalid table name
+
+
+SQL> insert into sales values('North America','Canada','Toronto',10000);
+
+1 row created.
+
+SQL> insert into sales values('South America','England','London',50000);
+
+1 row created.
+
+SQL> insert into sales values('Asia','India','Mumbai',80000);
+
+1 row created.
+
+SQL> select*from sales;
+
+CONTINENT            COUNTRY              CITY                 UNITS_SOLD
+-------------------- -------------------- -------------------- ----------
+North America        Canada               Toronto                   10000
+South America        England              London                    50000
+Asia                 India                Mumbai                    80000
+
+SQL> insert into sales values('Asia','Japan','Tokoyo',30000);
+
+1 row created.
+
+SQL> insert into sales values('Asia','ShriLanka','Colombo',20000);
+
+1 row created.
+
+SQL> insert into sales values('Asia','Korea','Seoul',40000);00
+  2
+SQL> insert into sales values('Asia','Korea','Seoul',40000);
+
+1 row created.
+
+SQL> select*from sales;
+
+CONTINENT            COUNTRY              CITY                 UNITS_SOLD
+-------------------- -------------------- -------------------- ----------
+North America        Canada               Toronto                   10000
+South America        England              London                    50000
+Asia                 India                Mumbai                    80000
+Asia                 Japan                Tokoyo                    30000
+Asia                 ShriLanka            Colombo                   20000
+Asia                 Korea                Seoul                     40000
+
+6 rows selected.
+
+SQL> select*from sales
+  2  order by continent,country,city
+  3  ;
+
+CONTINENT            COUNTRY              CITY                 UNITS_SOLD
+-------------------- -------------------- -------------------- ----------
+Asia                 India                Mumbai                    80000
+Asia                 Japan                Tokoyo                    30000
+Asia                 Korea                Seoul                     40000
+Asia                 ShriLanka            Colombo                   20000
+North America        Canada               Toronto                   10000
+South America        England              London                    50000
+
+6 rows selected.
+
+SQL> select continent,sum(units_sold)
+  2  from sales
+  3  group by continent;
+
+CONTINENT            SUM(UNITS_SOLD)
+-------------------- ---------------
+North America                  10000
+South America                  50000
+Asia                          170000
+
+SQL> select county,sum(units_sold)
+  2  from sales
+  3  group by country;
+select county,sum(units_sold)
+       *
+ERROR at line 1:
+ORA-00904: "COUNTY": invalid identifier
+
+
+SQL> select county,sum(units_sold)
+  2  from sales
+  3  group by country;
+select county,sum(units_sold)
+       *
+ERROR at line 1:
+ORA-00904: "COUNTY": invalid identifier
+
+
+SQL> select country,sum(units_sold)
+  2  group by country;
+group by country
+*
+ERROR at line 2:
+ORA-00923: FROM keyword not found where expected
+
+
+SQL> select county,sum(units_sold)
+  2  from sales
+  3  group by country;
+select county,sum(units_sold)
+       *
+ERROR at line 1:
+ORA-00904: "COUNTY": invalid identifier
+
+
+SQL> select country,sum(units_sold)
+  2  from sales
+  3  group by country;
+
+COUNTRY              SUM(UNITS_SOLD)
+-------------------- ---------------
+Korea                          40000
+England                        50000
+India                          80000
+Canada                         10000
+ShriLanka                      20000
+Japan                          30000
+
+6 rows selected.
+
+SQL> select city,sum(units_sold)
+  2  from sales
+  3  group by city;
+
+CITY                 SUM(UNITS_SOLD)
+-------------------- ---------------
+London                         50000
+Colombo                        20000
+Mumbai                         80000
+Toronto                        10000
+Tokoyo                         30000
+Seoul                          40000
+
+6 rows selected.
+
+SQL> select continent,country,city,sum(units_sold)
+  2  from sales
+  3  group by grouping sets(continent,country,city);
+
+CONTINENT            COUNTRY              CITY                 SUM(UNITS_SOLD)
+-------------------- -------------------- -------------------- ---------------
+North America                                                            10000
+South America                                                            50000
+Asia                                                                    170000
+                     Korea                                               40000
+                     England                                             50000
+                     India                                               80000
+                     Canada                                              10000
+                     ShriLanka                                           20000
+                     Japan                                               30000
+                                          London                         50000
+                                          Colombo                        20000
+
+CONTINENT            COUNTRY              CITY                 SUM(UNITS_SOLD)
+-------------------- -------------------- -------------------- ---------------
+                                          Mumbai                         80000
+                                          Toronto                        10000
+                                          Tokoyo                         30000
+                                          Seoul                          40000
+
+15 rows selected.
+
+SQL> select continent,country,city,sum(units_sold)
+  2  from sales
+  3  group by rollup(continent,country,city);
+
+CONTINENT            COUNTRY              CITY                 SUM(UNITS_SOLD)
+-------------------- -------------------- -------------------- ---------------
+Asia                 India                Mumbai                         80000
+Asia                 India                                               80000
+Asia                 Japan                Tokoyo                         30000
+Asia                 Japan                                               30000
+Asia                 Korea                Seoul                          40000
+Asia                 Korea                                               40000
+Asia                 ShriLanka            Colombo                        20000
+Asia                 ShriLanka                                           20000
+Asia                                                                    170000
+North America        Canada               Toronto                        10000
+North America        Canada                                              10000
+
+CONTINENT            COUNTRY              CITY                 SUM(UNITS_SOLD)
+-------------------- -------------------- -------------------- ---------------
+North America                                                            10000
+South America        England              London                         50000
+South America        England                                             50000
+South America                                                            50000
+                                                                        230000
+
+16 rows selected.
+
+SQL> select continent,country,city,sum(units_sold)
+  2  from sales
+  3  group by rolldown(continent,country,city);
+group by rolldown(continent,country,city)
+         *
+ERROR at line 3:
+ORA-00904: "ROLLDOWN": invalid identifier
+
+
+SQL> group by rolldown(continent,country,city);
+SP2-0734: unknown command beginning "group by r..." - rest of line ignored.
+SQL> select continent,country,city,sum(units_sold)
+  2  from sales
+  3  group by cube(continent,country,city);
+
+CONTINENT            COUNTRY              CITY                 SUM(UNITS_SOLD)
+-------------------- -------------------- -------------------- ---------------
+                                                                        230000
+                                          Seoul                          40000
+                                          London                         50000
+                                          Mumbai                         80000
+                                          Tokoyo                         30000
+                                          Colombo                        20000
+                                          Toronto                        10000
+                     India                                               80000
+                     India                Mumbai                         80000
+                     Japan                                               30000
+                     Japan                Tokoyo                         30000
+
+CONTINENT            COUNTRY              CITY                 SUM(UNITS_SOLD)
+-------------------- -------------------- -------------------- ---------------
+                     Korea                                               40000
+                     Korea                Seoul                          40000
+                     Canada                                              10000
+                     Canada               Toronto                        10000
+                     England                                             50000
+                     England              London                         50000
+                     ShriLanka                                           20000
+                     ShriLanka            Colombo                        20000
+Asia                                                                    170000
+Asia                                      Seoul                          40000
+Asia                                      Mumbai                         80000
+
+CONTINENT            COUNTRY              CITY                 SUM(UNITS_SOLD)
+-------------------- -------------------- -------------------- ---------------
+Asia                                      Tokoyo                         30000
+Asia                                      Colombo                        20000
+Asia                 India                                               80000
+Asia                 India                Mumbai                         80000
+Asia                 Japan                                               30000
+Asia                 Japan                Tokoyo                         30000
+Asia                 Korea                                               40000
+Asia                 Korea                Seoul                          40000
+Asia                 ShriLanka                                           20000
+Asia                 ShriLanka            Colombo                        20000
+North America                                                            10000
+
+CONTINENT            COUNTRY              CITY                 SUM(UNITS_SOLD)
+-------------------- -------------------- -------------------- ---------------
+North America                             Toronto                        10000
+North America        Canada                                              10000
+North America        Canada               Toronto                        10000
+South America                                                            50000
+South America                             London                         50000
+South America        England                                             50000
+South America        England              London                         50000
+
+40 rows selected.
+
+SQL>

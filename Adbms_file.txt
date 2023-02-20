@@ -1,0 +1,542 @@
+Abstract data type :  
+
+SQL> create type type_name As object
+  2  (
+  3  fname varchar(20),
+  4  mname varchar(20),
+  5  lname varchar(20)
+  6  );
+  7  /
+
+Type created.
+
+SQL> create type type_address As object
+  2  (
+  3  street varchar(20),
+  4  city varchar(20),
+  5  pincode number(10)
+  6  );
+  7  /
+
+Type created.
+
+SQL> create table customer1
+  2  (
+  3  c_id number(5) primary key,
+  4  c_name type_name,
+  5  c_add type_address,
+  6  c_phno number(10)
+  7  );
+
+Table created.
+
+SQL> insert into customer1
+  2  values(1,type_name('ram','k','raj'),
+  3  type_address('sainagar','mumbai',40016),123456789);
+
+1 row created.
+
+SQL> select*from customer1;
+
+      C_ID
+----------
+C_NAME(FNAME, MNAME, LNAME)
+--------------------------------------------------------------------------------
+C_ADD(STREET, CITY, PINCODE)
+--------------------------------------------------------------------------------
+    C_PHNO
+----------
+         1
+TYPE_NAME('ram', 'k', 'raj')
+TYPE_ADDRESS('sainagar', 'mumbai', 40016)
+ 123456789
+
+
+SQL> insert into customer1
+  2  values(2,type_name('mohan','r','kumar'),
+  3  type_address('mahim','mumbai',400016)12546854);
+type_address('mahim','mumbai',400016)12546854)
+                                     *
+ERROR at line 3:
+ORA-00917: missing comma
+
+
+SQL> insert into customer1
+  2  values(2,type_name('mohan','r','kumar'),
+  3  type_address('mahim','mumbai',400016),12546854);
+
+1 row created.
+
+SQL> select*from customer1;
+
+      C_ID
+----------
+C_NAME(FNAME, MNAME, LNAME)
+--------------------------------------------------------------------------------
+C_ADD(STREET, CITY, PINCODE)
+--------------------------------------------------------------------------------
+    C_PHNO
+----------
+         1
+TYPE_NAME('ram', 'k', 'raj')
+TYPE_ADDRESS('sainagar', 'mumbai', 40016)
+ 123456789
+
+
+      C_ID
+----------
+C_NAME(FNAME, MNAME, LNAME)
+--------------------------------------------------------------------------------
+C_ADD(STREET, CITY, PINCODE)
+--------------------------------------------------------------------------------
+    C_PHNO
+----------
+         2
+TYPE_NAME('mohan', 'r', 'kumar')
+TYPE_ADDRESS('mahim', 'mumbai', 400016)
+  12546854
+
+SQL> insert into customer1
+  2  values(3,type_name('ranjeet','S','Kumar'),
+  3  type_address('dadar','mumbai',400012),2345686);
+
+1 row created.
+
+SQL> select*from customer1;
+
+      C_ID
+----------
+C_NAME(FNAME, MNAME, LNAME)
+--------------------------------------------------------------------------------
+C_ADD(STREET, CITY, PINCODE)
+--------------------------------------------------------------------------------
+    C_PHNO
+----------
+         1
+TYPE_NAME('ram', 'k', 'raj')
+TYPE_ADDRESS('sainagar', 'mumbai', 40016)
+ 123456789
+
+
+      C_ID
+----------
+C_NAME(FNAME, MNAME, LNAME)
+--------------------------------------------------------------------------------
+C_ADD(STREET, CITY, PINCODE)
+--------------------------------------------------------------------------------
+    C_PHNO
+----------
+         2
+TYPE_NAME('mohan', 'r', 'kumar')
+TYPE_ADDRESS('mahim', 'mumbai', 400016)
+  12546854
+
+
+      C_ID
+----------
+C_NAME(FNAME, MNAME, LNAME)
+--------------------------------------------------------------------------------
+C_ADD(STREET, CITY, PINCODE)
+--------------------------------------------------------------------------------
+    C_PHNO
+----------
+         3
+TYPE_NAME('ranjeet', 'S', 'Kumar')
+TYPE_ADDRESS('dadar', 'mumbai', 400012)
+   2345686
+
+
+SQL>
+
+// concatination(pipes)
+
+
+SQL> select c.c_name.fname|| ''|| c.c_name.mname||''||c.c_name.lname from customer1 c;
+
+C.C_NAME.FNAME||''||C.C_NAME.MNAME||''||C.C_NAME.LNAME
+------------------------------------------------------------
+ramkraj
+mohanrkumar
+ranjeetSKumar
+
+SQL>
+
+c.c_name.fname|| c.c_mname||c.c lname
+
+
+//nesting and altering
+
+alter type type_address
+2 add attribute(name type_name)cascade;
+
+
+SQL> create table cust2
+  2  (
+  3  cust_no integer,add1 type_address);
+
+Table created.
+
+ insert into cust2 values(101,type_address('prabhadevi','mumbai',400012, type_name('vashu','gaurang','survesh')));
+values(101,type_address('prabhadevi','mumbai',400012,
+
+// desc cust2;
+
+// select cust_no from cust2;
+
+
+
+SQL> desc type_address;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ STREET                                             VARCHAR2(20)
+ CITY                                               VARCHAR2(20)
+ PINCODE                                            NUMBER(10)
+
+SQL> alter
+  2
+SQL>  alter type type_address
+  2   add attribute(name type_name)cascade;
+
+Type altered.
+
+SQL> drop table cust2;\
+  2  /
+drop table cust2;\
+                *
+ERROR at line 1:
+ORA-00911: invalid character
+
+
+SQL> drop table cust2;
+
+Table dropped.
+
+SQL> create table cust2
+  2  ( cust_no integer,
+  3  add1 type_address);
+
+Table created.
+
+SQL> insert into cust2 values(101,type_address('prabhadevi','mumbai',400012, type_name('vashu','gaurang','survesh')));
+
+1 row created.
+
+SQL>
+
+
+
+SQL> select cust_no from cust2;
+
+   CUST_NO
+----------
+       101
+
+SQL> desc cust2;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ CUST_NO                                            NUMBER(38)
+ ADD1                                               TYPE_ADDRESS
+
+SQL>
+
+
+
+
+// create table employee
+
+
+SQL> create table emp25
+  2  (
+  3  emp_no numeric(5),
+  4  fname varchar2(10),
+  5  lname varchar2(10),
+  6  salary numeric(5),
+  7  comm numeric(5)
+  8  );
+
+Table created.
+
+
+/ Insert into table employee
+
+SQL> insert into emp25 values(01,'Ranjeet','Kumar',50000,2000);
+
+1 row created.
+
+SQL> insert into emp25 values(02,'Mohan','Singh',60000,3000);
+
+1 row created.
+
+
+SQL> insert into emp25 values(03,'Adarsh','Vish.',6000,25);
+
+1 row created.
+
+SQL> insert into emp25 values(04,'Deep','sulakhe',52000,2500);
+
+1 row created.
+
+SQL> insert into emp25 values(05,'Jay','Nevarkar',32000,3500);
+
+1 row created.
+
+SQL> insert into emp25 values(06,'Hrithik','Tamta',45000,3600);
+
+1 row created.
+
+SQL> insert into emp25 values(07,'Raju','Shrivastav',85000,5600);
+
+1 row created.
+
+SQL> insert into emp25 values(08,'Veera','Shethy',95000,5300);
+
+1 row created.
+
+SQL> insert into emp25 values(09,'Virat','Kohli',65000,5030);
+
+1 row created.
+
+SQL> insert into emp25 values(10,'Mukesh','Gupta',35000,7030);
+
+1 row created.
+
+SQL>
+
+
+
+SQL> select*from emp25;
+
+    EMP_NO FNAME      LNAME          SALARY       COMM
+---------- ---------- ---------- ---------- ----------
+         1 Ranjeet    Kumar           50000       2000
+         2 Mohan      Singh           60000       3000
+         3 Adarsh     Vish.            6000         25
+         4 Deep       sulakhe         52000       2500
+         5 Jay        Nevarkar        32000       3500
+         6 Hrithik    Tamta           45000       3600
+         7 Raju       Shrivastav      85000       5600
+         8 Veera      Shethy          95000       5300
+         9 Virat      Kohli           65000       5030
+        10 Mukesh     Gupta           35000       7030
+
+10 rows selected.
+
+
+SQL> commit;
+
+Commit complete.
+
+
+SQL> select*from emp25output1;
+
+    EMP_NO FNAME      LNAME          SALARY       COMM
+---------- ---------- ---------- ---------- ----------
+         1 Ranjeet    Kumar           50000       2000
+         2 Mohan      Singh           60000       3000
+         3 Adarsh     Vish.            6000         25
+         4 Deep       sulakhe         52000       2500
+         5 Jay        Nevarkar        32000       3500
+         6 Hrithik    Tamta           45000       3600
+         7 Raju       Shrivastav      85000       5600
+         8 Veera      Shethy          95000       5300
+         9 Virat      Kohli           65000       5030
+        10 Mukesh     Gupta           35000       7030
+
+10 rows selected.
+
+SQL>
+
+SQL> select*from emp25output6;
+
+    EMP_NO FNAME      LNAME          SALARY       COMM
+---------- ---------- ---------- ---------- ----------
+        10 Mukesh     Gupta           35000       7030
+         9 Virat      Kohli           65000       5030
+         8 Veera      Shethy          95000       5300
+         7 Raju       Shrivastav      85000       5600
+         6 Hrithik    Tamta           45000       3600
+         5 Jay        Nevarkar        32000       3500
+         4 Deep       sulakhe         52000       2500
+         3 Adarsh     Vish.            6000         25
+         2 Mohan      Singh           60000       3000
+         1 Ranjeet    Kumar           50000       2000
+
+10 rows selected.
+
+
+SQL> select*from emp25output01;
+
+    EMP_NO FNAME      LNAME          SALARY       COMM  VALUENAME
+---------- ---------- ---------- ---------- ---------- ----------
+        10 Mukesh     Gupta           35000       7030          1
+         9 Virat      Kohli           65000       5030          3
+         8 Veera      Shethy          95000       5300          5
+         7 Raju       Shrivastav      85000       5600          7
+         6 Hrithik    Tamta           45000       3600          9
+         5 Jay        Nevarkar        32000       3500         11
+         4 Deep       sulakhe         52000       2500         13
+         3 Adarsh     Vish.            6000         25         15
+         2 Mohan      Singh           60000       3000         17
+         1 Ranjeet    Kumar           50000       2000         19
+
+10 rows selected.
+
+//Calculate Total salary
+
+SQL> select*from emp25output01;
+
+    EMP_NO FNAME      LNAME          SALARY       COMM  Total sal
+---------- ---------- ---------- ---------- ---------- ----------
+         1 Ranjeet    Kumar           50000       2000      52000
+         2 Mohan      Singh           60000       3000      63000
+         3 Adarsh     Vish.            6000         25       6025
+         4 Deep       sulakhe         52000       2500      54500
+         5 Jay        Nevarkar        32000       3500      35500
+         6 Hrithik    Tamta           45000       3600      48600
+         7 Raju       Shrivastav      85000       5600      90600
+         8 Veera      Shethy          95000       5300     100300
+         9 Virat      Kohli           65000       5030      70030
+        10 Mukesh     Gupta           35000       7030      42030
+
+10 rows selected.
+
+// Concatinate
+
+select*from emp25output00;
+
+    EMP_NO FNAME      LNAME          SALARY       COMM FULLNAME
+---------- ---------- ---------- ---------- ---------- -------------------------
+         1 Ranjeet    Kumar           50000       2000 Ranjeet_Kumar
+         2 Mohan      Singh           60000       3000 Mohan_Singh
+         3 Adarsh     Vish.            6000         25 Adarsh_Vish.
+         4 Deep       sulakhe         52000       2500 Deep_sulakhe
+         5 Jay        Nevarkar        32000       3500 Jay_Nevarkar
+         6 Hrithik    Tamta           45000       3600 Hrithik_Tamta
+         7 Raju       Shrivastav      85000       5600 Raju_Shrivastav
+         8 Veera      Shethy          95000       5300 Veera_Shethy
+         9 Virat      Kohli           65000       5030 Virat_Kohli
+        10 Mukesh     Gupta           35000       7030 Mukesh_Gupta
+
+10 rows selected.
+
+// Split 
+SQL> select*from emp25output10;
+
+    EMP_NO FNAME      LNAME          SALARY       COMM FIRST_NAME LAST_NAME
+---------- ---------- ---------- ---------- ---------- ---------- ----------
+         1 Ranjeet    Kumar           50000       2000 Ranjeet    Kumar
+         2 Mohan      Singh           60000       3000 Mohan      Singh
+         3 Adarsh     Vish.            6000         25 Adarsh     Vish.
+         4 Deep       sulakhe         52000       2500 Deep       sulakhe
+         5 Jay        Nevarkar        32000       3500 Jay        Nevarkar
+         6 Hrithik    Tamta           45000       3600 Hrithik    Tamta
+         7 Raju       Shrivastav      85000       5600 Raju       Shrivastav
+         8 Veera      Shethy          95000       5300 Veera      Shethy
+         9 Virat      Kohli           65000       5030 Virat      Kohli
+        10 Mukesh     Gupta           35000       7030 Mukesh     Gupta
+
+10 rows selected.
+
+6. Number Range: 
+
+Create student table in SQl
+
+Select*from student;
+
+SQL> create table student
+  2  (
+  3  roll_number integer,
+  4  percentage integer);
+
+Table created.
+
+SQL> insert into student values(101,59);
+
+1 row created.
+
+SQL> insert into student values(102,35);
+
+1 row created.
+
+SQL> insert into student values(103,69);
+
+1 row created.
+
+SQL> insert into student values(104,89);
+
+1 row created.
+
+SQL> insert into student values(105,36);
+
+1 row created.
+
+SQL> insert into student values(106,56);
+
+1 row created.
+
+SQL> insert into student values(107,23);
+
+1 row created.
+
+SQL> insert into student values(108,20);
+
+1 row created.
+
+
+SQL> select*from student;
+
+ROLL_NUMBER PERCENTAGE
+----------- ----------
+        101         59
+        102         35
+        103         69
+        104         89
+        105         36
+        106         56
+        107         23
+        108         20
+
+8 rows selected.
+
+SQL> select*from studentoutput;
+
+ROLL_NUMBER PERCENTAGE
+----------- ----------
+RESULT
+--------------------------------------------------------------------------------
+        101         59
+Second
+
+        102         35
+Fail
+
+        103         69
+First
+
+
+ROLL_NUMBER PERCENTAGE
+----------- ----------
+RESULT
+--------------------------------------------------------------------------------
+        104         89
+OutStanding
+
+        105         36
+Fail
+
+        106         56
+Second
+
+
+ROLL_NUMBER PERCENTAGE
+----------- ----------
+RESULT
+--------------------------------------------------------------------------------
+        107         23
+Fail
+
+        108         20
+Fail
+
+
+8 rows selected.

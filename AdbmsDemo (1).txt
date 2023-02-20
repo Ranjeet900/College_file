@@ -1,0 +1,294 @@
+how to make an data grid
+how to import excel in pentaho
+how to perform pentaho operations usign excel 
+Number range pentaho * 10 marks
+
+create table sales
+	columns year, region ,deptno, profit
+
+display rank wise profit and year wise profit
+find the minimum profit region in every year using lead function 
+find the most profitable region every year using analytical function(dense rank, maximum, minimum)
+display deptno, region, year and sum of profit according to(group by) the deptno and region using cube function
+
+Create ADT (ex. name, address)
+	employee table (id, name, addres, project)
+	Display the employee assigned the ID 101
+	employee id 105 display name only
+	display list of projects
+	display address of employees
+	dislay the details of employee working on the specific project
+
+range partitioning *** important and list partitioning
+	given an table, which column to do partition
+	create 3 partition on the table using the column(cabinet, name, etc)
+	display all the members with salary more then 30000 and near maharashtra
+	
+data grid example
+	create data grid with data (data will be given create a grid)
+	split the name, add sequence, load data in excel file
+
+the analytical function table will have more grouping
+
+display the highest profit of the region using the rank function
+
+book (id, title, name, category, author, price)
+	category wise total price
+	heightest priced book using the rank function
+	category wise height price
+	category wise lowest price
+Partion and ranged partition*** are important
+
+ADT (create object in the table, and how to fetch individual columns)
+List partioning (andheri, harbour, etc given in the offline practicals)
+
+create ADT of detailed type(name, designation, etc)
+	display if age 30
+	display if designation delhi
+	Practice of how to fetch individual column****
+
+r programming introduction 
+	missing value
+	and related to it
+	suppose a weather table is given get:
+		temperateure wise(hotest, coldest)
+
+open iris data set 
+	head first 10 records
+	tail
+
+k-means algorithm
+ranged partitioning
+
+lead, lag, first, last
+	how the uses of lead and lag in the following table(make an self table because the table is not given)
+
+It can happen for 5 marks that 
+	create ADT, make table, insert records
+
+vector to dataframe r programming 
+	show uses of first and last function in oracle
+	
+show the uses of rollup and cube function ( chances are there )
+
+rprogramming matrices ( do multiplication, etc.)
+
+pentaho(sequence, sorting, calculator, concat, adding new row, deleting column)
+dense rank
+
+open file and show dimensions
+
+load groceries data set as transactions ( set support and confidence )
+
+altering partition
+
+data validation in pentaho
+
+ADT of book table 
+	fetch particular columns these are necessary
+	
+Missing value in preprocessing, predicting the value etc.
+partitioning***
+
+VIVA_______
+
+ch1
+what is partioning
+three types of partitioning
+	range, list, hash
+	and how they work
+ADT means what
+Use of ADT
+OODBMS vs ORDBMS
+Parallel DBMS vs Distributed DBMS
+
+ch2
+Data Warehouse
+ETL
+OLAP vs OLTP
+Schemas (starflake, snowflake, factConstellation)
+Data mart
+
+Data processing, data mining, KDD process, Data cleaning, Transformation, Integration
+
+association rule mining
+	support 
+	frequent item set
+	strong assiciation rule
+	confidence
+
+classification
+	what is
+
+regressions
+naive bayes theorm
+k-nearest neighbour
+
+decision tree
+	ID3, CART
+
+clustering any two alrightms
+	kmeans
+	aglomerative
+
+web mining
+	content
+	structure
+	uses
+
+test mining
+
+
+// Range  Partition
+create table sales_range 
+(salesman_id number(5), 
+salesman_name varchar2(30), 
+sales_amount number(10), 
+sales_date date) 
+partition by range(sales_date)  ( 
+
+partition sales_jan2000 values less than(to_date('01/02/2000','dd/mm/yyyy')), 
+partition sales_feb2000 values less than(to_date('01/03/2000','dd/mm/yyyy')), 
+ partition sales_mar2000 values less than(to_date('01/04/2000','dd/mm/yyyy')), 
+ partition sales_apr2000 values less than(to_date('01/05/2000','dd/mm/yyyy')) 
+ )enable row movement; 
+
+// Insert data
+
+ insert into sales_range values(1,’Ranjeet Kumar',5000,to_date('23/02/2000','dd/mm/yyyy')); 
+ insert into sales_range values(2,'Hrithik Tamta',10000,to_date('29/01/2000','dd/mm/yyyy')); 
+ insert into sales_range values(3,’Mohan Lade',50000,to_date('23/03/2000','dd/mm/yyyy')); 
+ insert into sales_range values(4,’Rahul Tambe',100000,to_date('01/04/2000','dd/mm/yyyy')); 
+ insert into sales_range values(5,'Ritik Singh',6000,to_date('15/04/2000','dd/mm/yyyy')); 
+ insert into sales_range values(6,'Virat Kohli',45000,to_date('15/03/2000','dd/mm/yyyy')); 
+ insert into sales_range values(7,'Ishan Kishan',66000,to_date('30/04/2000','dd/mm/yyyy')); 
+ insert into sales_range values(8,'Ravichandran Ashivin',25000,to_date('19/02/2000','dd/mm/yyyy')); 
+
+1 row created. 
+
+SQL> insert into sales_range values(1,’Ranjeet Kumar',5000,to_date('23/02/2000','dd/mm/yyyy'));
+
+1 row created.
+
+SQL>  insert into sales_range values(2,'Hrithik Tamta',10000,to_date('29/01/2000','dd/mm/yyyy'));
+
+1 row created.
+
+SQL>  insert into sales_range values(3,’Mohan Lade',50000,to_date('23/03/2000','dd/mm/yyyy'));
+
+1 row created.
+
+SQL>  insert into sales_range values(4,’Rahul Tambe',100000,to_date('01/04/2000','dd/mm/yyyy'));
+
+1 row created.
+
+SQL>  insert into sales_range values(5,'Ritik Singh',6000,to_date('15/04/2000','dd/mm/yyyy'));
+
+1 row created.
+
+SQL>  insert into sales_range values(6,'Virat Kohli',45000,to_date('15/03/2000','dd/mm/yyyy'));
+
+1 row created.
+
+SQL>  insert into sales_range values(7,'Ishan Kishan',66000,to_date('30/04/2000','dd/mm/yyyy'));
+
+1 row created.
+
+SQL>  insert into sales_range values(8,'Ravichandran Ashivin',25000,to_date('19/02/2000','dd/mm/yyyy'));
+
+1 row created.
+
+
+
+
+
+create table emp26 
+(emp_no integer primary key, emp_name varchar2(20), 
+salary integer) 
+partition by range(emp_no)  ( 
+partition e1 values less than(105),partition e2 values less than(110)); 
+
+
+insert into emp26 values(101,'Ram Kumar',20000);
+insert into emp26 values(102,'shikar dhawan',19000); 
+insert into emp26 values(103,'Kumar Rahul',30000); 
+insert into emp26 values(104,'jogesh kumar',15000); 
+insert into emp26 values(105,'Jay pandaya',35000); 
+insert into emp26 values(106,'kurnal pandaya',12000); 
+insert into emp26 values(107,'ravindra jadeja',50000); 
+insert into emp26 values(108,'bumraha',55000);  
+
+
+
+SQL>  select * from employee11;
+
+    EMP_NO EMP_NAME                 SALARY
+---------- -------------------- ----------
+       101 Ram Kumar                 20000
+       102 shikar dhawan             19000
+       103 Kumar Rahul               30000
+       104 jogesh kumar              15000
+       105 Jay pandaya               35000
+       106 kurnal pandaya            12000
+       107 ravindra jadeja           50000
+       108 bumraha                   55000
+
+
+create table sales_list(salesman_id number(5), 
+salesman_name varchar2(30), 
+sales_state varchar2(20), 
+sales_amount number(10), 
+sales_date date) 
+partition by list (sales_state) 
+(partition sales_west values ('andheri', 'borivali'),  partition sales_harbur values ('vashi','panvel'), 
+partition sales_cental values ('dadar','thane'),  partition sales_other values (default) ) 
+enable row movement; 
+
+
+
+insert into sales_list values(1,'Ranjeet Kumar','dadar',25000,to_date('23/02/2000','dd/mm/yyyy')); 
+insert into sales_list values(2,'Hritik Tamta','andheri',35000,to_date('13/08/2000','dd/mm/yyyy'));  
+insert into sales_list values(3,'Jay Narkar','vashi',15000,to_date('08/06/2000','dd/mm/yyyy')); 
+insert into sales_list values(4,'Aman Jadhav','ghatkopar',55000,to_date('17/09/2000','dd/mm/yyyy')); 
+insert into sales_list values(5,'Yougesh patil','thane',5000,to_date('16/05/2000','dd/mm/yyyy')); 
+
+ 
+
+create table sales_hash
+(salesman_id number(5), 
+salesman_name varchar2(30), 
+sales_amount number(10), 
+weak_no number(2)) 
+partition by hash(salesman_id)partitions 4
+; 
+
+
+create table emp26(
+emp_no numeric(5),
+fanme varchar2(10),
+laname varchar2(10),
+salary numeric(5),
+comm numeric(5)
+);
+
+
+insert into emp26 values(01,'Ranjeet','Kumar',50000,600);
+insert into emp26 values(02,'Hrithik','Tamta',50000,600);
+insert into emp26 values(03,'Rushi','Chapke',50000,600);
+insert into emp26 values(04,'Aman','Rajbhar',50000,600);
+insert into emp26 values(05,'Abshiek','Tamta',50000,600);
+
+C:\Users\User\Downloads\ojdbc10
+
+// Start from here
+Copy data from Source (Table/Excel/ Oracle) and store it to Target 
+
+Step 1: 
+
+
+
+
+
+
+
+sqlplus myusername/mypassword@Host/ORCL
